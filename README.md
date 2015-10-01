@@ -11,3 +11,13 @@ See the [ELK Docker image documentation web page](https://spujadas.github.io/elk
 ### About
 
 Written by [Sébastien Pujadas](https://pujadas.net), released under the [Apache 2 license](https://www.apache.org/licenses/LICENSE-2.0).
+
+### Changes
+Compared to original version of the image, the following changes were introduced:
+
+In Elasticsearch configuration:
+* dynamic scripting enabled 
+* cors enabled for all origins
+* Java 8
+* bootstrap.mlockall: true
+
