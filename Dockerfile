@@ -100,6 +100,13 @@ ADD ./30-lumberjack-output.conf /etc/logstash/conf.d/30-lumberjack-output.conf
 ADD ./nginx.pattern ${LOGSTASH_HOME}/patterns/nginx
 RUN chown -R logstash:logstash ${LOGSTASH_HOME}/patterns
 
+###############################################################################
+#                                 PLUGINS
+###############################################################################
+ENV ES_HOME /usr/share/elasticsearch
+WORKDIR ${ES_HOME}
+
+RUN bin/plugin -i mobz/elasticsearch-head
 
 ###############################################################################
 #                                   START

@@ -16,6 +16,7 @@ Written by [Sébastien Pujadas](https://pujadas.net), released under the [Apache
 Compared to original version of the image, the following changes were introduced:
 
 In Elasticsearch configuration:
+
 * dynamic scripting enabled 
 * cors enabled for all origins
 * Java 8
