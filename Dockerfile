@@ -5,11 +5,11 @@
 # docker build -t <repo-user>/elk .
 
 # Run with:
-# docker run -p 5601:5601 -p 9200:9200 -p 5000:5000 -it --name elk <repo-user>/elk
+# docker run -p 5601:5601 -p 9200:9200 -p 9999:9999 -it --name elk <repo-user>/elk
 
 FROM phusion/baseimage
 MAINTAINER Sebastien Pujadas http://pujadas.net
-ENV REFRESHED_AT 2015-09-22
+ENV REFRESHED_AT 2015-11-20
 
 ###############################################################################
 #                                INSTALLATION
@@ -91,10 +91,7 @@ ADD ./logstash-forwarder.crt /etc/pki/tls/certs/logstash-forwarder.crt
 ADD ./logstash-forwarder.key /etc/pki/tls/private/logstash-forwarder.key
 
 # filters
-ADD ./01-lumberjack-input.conf /etc/logstash/conf.d/01-lumberjack-input.conf
-ADD ./10-syslog.conf /etc/logstash/conf.d/10-syslog.conf
-ADD ./11-nginx.conf /etc/logstash/conf.d/11-nginx.conf
-ADD ./30-lumberjack-output.conf /etc/logstash/conf.d/30-lumberjack-output.conf
+ADD ./05-log4j.conf /etc/logstash/conf.d/05-log4j.conf
 
 # patterns
 ADD ./nginx.pattern ${LOGSTASH_HOME}/patterns/nginx
@@ -115,7 +112,7 @@ RUN bin/plugin -i mobz/elasticsearch-head
 ADD ./start.sh /usr/local/bin/start.sh
 RUN chmod +x /usr/local/bin/start.sh
 
-EXPOSE 5601 9200 9300 5000
+EXPOSE 5601 9200 9300 9999
 VOLUME /var/lib/elasticsearch
 
 CMD [ "/usr/local/bin/start.sh" ]
